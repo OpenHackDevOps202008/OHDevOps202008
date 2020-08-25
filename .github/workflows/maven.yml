@@ -9,6 +9,11 @@ on:
   pull_request:
     branches: [ master ]
 
+defaults:
+  run:
+    working-directory: ./apis/user-java/
+
+
 jobs:
   build:
 
@@ -20,8 +25,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: change the directory
-      run: cd ./apis/user-java
-      
+    - name: change the directory     
     - name: Build with Maven
       run: mvn test
