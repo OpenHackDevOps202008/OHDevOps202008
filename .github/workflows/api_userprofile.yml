@@ -16,6 +16,10 @@ on:
       - 'apis/userprofile/**'
       - '.github/workflows/api_userprofile.yml'
 
+defaults:
+  run:
+    working-directory: apis/userprofile/
+
 jobs:
   build:
 
