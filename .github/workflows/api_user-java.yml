@@ -22,7 +22,7 @@ defaults:
 
 
 jobs:
-  build:
+  apis_user_java_clean_test_build:
 
     runs-on: ubuntu-latest
 
