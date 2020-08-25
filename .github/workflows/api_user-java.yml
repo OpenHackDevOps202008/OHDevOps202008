@@ -6,9 +6,15 @@ name: Java CI with Maven
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'apis/user-java/**'
   pull_request:
     branches: [ master ]
-
+    paths:
+      - 'apis/user-java/**'
+      - '.github/workflows/api_user-java.yml'
+    
+  
 defaults:
   run:
     working-directory: ./apis/user-java/
