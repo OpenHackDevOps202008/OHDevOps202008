@@ -20,5 +20,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: change the directory
+      run: cd ./apis/user-java
+      
     - name: Build with Maven
-      run: cd ./apis/user-java && mvn test
+      run: mvn test
