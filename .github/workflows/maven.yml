@@ -21,5 +21,4 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: ls -l #mvn test
-      run: pwd
+      run: cd ./apis/user-java && mvn test
