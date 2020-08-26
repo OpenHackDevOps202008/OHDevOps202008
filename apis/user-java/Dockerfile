@@ -9,6 +9,8 @@ FROM openjdk:11-jre-slim
 
 EXPOSE 8080
 
+# smaple change
+
 ENV SQL_USER="YourUserName" \
 SQL_PASSWORD="changeme" \
 SQL_SERVER="changeme.database.windows.net" \
