@@ -58,6 +58,10 @@ public class UserApiControllerTest {
         profile.setId("2");
     }
 
+   @Test 
+    public void dummTest() {
+       assertEquals(1, 2)
+   }
     @Test
     public void testSave() throws Exception {
         when(httpServletRequest.getHeader("Accept")).thenReturn("accept,application/json;charset=UTF-8");
