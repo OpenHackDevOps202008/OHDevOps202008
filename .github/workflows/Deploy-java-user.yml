@@ -28,11 +28,21 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # check out the repo
-    - uses: actions/checkout@v2
+    - name: we have no idea :-)
+      run: |
+        echo Double quote "$ACRNAME.azurecr.io/devopsoh/api-user-java:$GITHUB_RUN_NUMBER"
+        echo single quote '$ACRNAME.azurecr.io/devopsoh/api-user-java:$GITHUB_RUN_NUMBER'
+        echo nothing $ACRNAME.azurecr.io/devopsoh/api-user-java:$GITHUB_RUN_NUMBER
+
+    - name: Check-out the code
+      uses: actions/checkout@v2
+      
       # login to Azure
-    - uses: azure/login@v1.1
+    - name: Login to Azure
+      uses: azure/login@v1.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
       # build the docker image
     - run: |
         echo "Building API-USER-JAVA image..."
@@ -42,5 +52,4 @@ jobs:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'openhackub08ids6userjava'
-        images: '$ACRNAME.azurecr.io/devopsoh/api-user-java:$GITHUB_RUN_NUMBER'
-
+        images: "$ACRNAME.azurecr.io/devopsoh/api-user-java:$GITHUB_RUN_NUMBER"
