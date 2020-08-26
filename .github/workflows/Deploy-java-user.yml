@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Deploy-java-user
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -37,3 +37,10 @@ jobs:
     - run: |
         echo "Building API-USER-JAVA image..."
         az acr build --image "devopsoh/api-user-java:$GITHUB_RUN_NUMBER" --registry $ACRNAME --file Dockerfile .
+
+    # trigger app services to deploy the new image version
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'openhackub08ids6userjava'
+        images: '$ACRNAME.azurecr.io/devopsoh/api-user-java:$GITHUB_RUN_NUMBER'
+
