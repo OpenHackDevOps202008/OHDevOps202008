@@ -40,9 +40,11 @@ jobs:
       run: mvn test
     - name: Install with Maven
       run: mvn install
-    - name: Create an issue on push       
+    - name: Create an issue on push
+      if: ${{ failure() }}              
       uses: JasonEtco/create-an-issue@v2
       with:
         filename: .github/ISSUE_TEMPLATE_AUTO.md        
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
