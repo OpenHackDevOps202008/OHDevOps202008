@@ -16,5 +16,8 @@ SQL_DBNAME="mydrivingDB"
 
 # Add the application's jar to the container
 COPY --from=build-env target/swagger-spring-1.0.0.jar user-java.jar
-
+# for information purposes only: get to know the current working directory
+RUN pwd
+# for information purposes only: list all the contents, if any 
+RUN ls -l
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/user-java.jar"]
