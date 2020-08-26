@@ -59,8 +59,8 @@ jobs:
           inlineScript: |
             az acr build --image "devopsoh/api-userprofile:"${{ github.run_number }} --registry openhackub08ids6acr --file $GITHUB_WORKSPACE/apis/userprofile/Dockerfile .
 
-      - uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'openhackub08ids6userprofile'
-          images: openhackub08ids6acr.azurecr.io/devopsoh/api-userprofile:${{ github.run_number }}         
+      # - uses: azure/webapps-deploy@v2
+      #   with:
+      #     app-name: 'openhackub08ids6userprofile'
+      #     images: openhackub08ids6acr.azurecr.io/devopsoh/api-userprofile:${{ github.run_number }}         
                             
