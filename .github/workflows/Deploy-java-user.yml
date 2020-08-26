@@ -30,9 +30,7 @@ jobs:
       # check out the repo
     - name: we have no idea :-)
       run: |
-        echo "Double quote " + "$ACRNAME.azurecr.io/devopsoh/api-user-java:$GITHUB_RUN_NUMBER"
-        echo "single quote " + '$ACRNAME.azurecr.io/devopsoh/api-user-java:$GITHUB_RUN_NUMBER'
-        echo "nothing " + $ACRNAME.azurecr.io/devopsoh/api-user-java:$GITHUB_RUN_NUMBER
+        echo ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-user-java:${{ github.run_number }}
 
     - name: Check-out the code
       uses: actions/checkout@v2
@@ -52,4 +50,4 @@ jobs:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'openhackub08ids6userjava'
-        images: "$ACRNAME.azurecr.io/devopsoh/api-user-java:$GITHUB_RUN_NUMBER"
+        images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-user-java:${{ github.run_number }}
