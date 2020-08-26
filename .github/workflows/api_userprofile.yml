@@ -50,6 +50,9 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
       - name: Build Image using ACR
         uses: azure/CLI@v1
         with:
