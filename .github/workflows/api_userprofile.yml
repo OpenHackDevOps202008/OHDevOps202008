@@ -55,7 +55,7 @@ jobs:
         with:
           inlineScript: |
             ls $GITHUB_WORKSPACE
-            az acr build --image "devopsoh/api-userprofile:${GITHUB_RUN_NUMBER}" --registry openhackub08ids6acr --file Dockerfile .
+            az acr build --image "devopsoh/api-userprofile:${GITHUB_RUN_NUMBER}" --registry openhackub08ids6acr --file $GITHUB_WORKSPACE/Dockerfile .
 
 
                
