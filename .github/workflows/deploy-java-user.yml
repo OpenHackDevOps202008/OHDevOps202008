@@ -11,6 +11,13 @@ on:
   #pull_request:
   #  branches: [ master ]
 
+defaults:
+  run:
+    working-directory: apis/user-java/
+
+env:
+  ACRNAME: openhackub08ids6acr
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -20,10 +27,13 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-
+      # check out the repo
+    - uses: actions/checkout@v2
+      # login to Azure
     - uses: azure/login@v1.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    
+      # build the docker image
     - run: |
-        az webapp list --query "[?state=='Running']"
+        echo "Building API-USER-JAVA image..."
+        az acr build --image "devopsoh/api-user-java:$GITHUB_RUN_NUMBER" --registry $ACRNAME --file Dockerfile .
