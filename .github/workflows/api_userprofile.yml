@@ -54,8 +54,11 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az acr build --image "devopsoh/api-userprofile:${GITHUB_RUN_NUMBER}" --registry openhackub08ids6acr --file $GITHUB_WORKSPACE/apis/userprofile/Dockerfile .
-
+            echo $GITHUB_WORKSPACE
+            cd $GITHUB_WORKSPACE
+            ls
+            echo $GITHUB_RUN_NUMBER
+            
 
                
                             
