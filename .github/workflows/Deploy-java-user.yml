@@ -28,9 +28,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # check out the repo
-    - name: we have no idea :-)
-      run: |
-        echo ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-user-java:${{ github.run_number }}
 
     - name: Check-out the code
       uses: actions/checkout@v2
@@ -44,7 +41,7 @@ jobs:
       # build the docker image
     - run: |
         echo "Building API-USER-JAVA image..."
-        az acr build --image "devopsoh/api-user-java:$GITHUB_RUN_NUMBER" --registry $ACRNAME --file Dockerfile .
+        az acr build --image "devopsoh/api-user-java:"${{ github.run_number }} --registry ${{ env.ACRNAME }} --file Dockerfile .
 
     # trigger app services to deploy the new image version
     - uses: azure/webapps-deploy@v2
