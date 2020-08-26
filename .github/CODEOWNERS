@@ -1,5 +1,5 @@
-*                   @shobhitt
-/apis/poi/          @cthoenes
-/apis/trips/        @HolgerReiners
-/apis/user-java/    @markus-kaercher
-/apis/userprofile/  @scalanode
+*                   @shobhitt @cthoenes @HolgerReiners @scalanode @markus-kaercher
+/apis/poi/          @cthoenes @HolgerReiners
+/apis/trips/        @HolgerReiners @cthoenes
+/apis/user-java/    @markus-kaercher @cthoenes
+/apis/userprofile/  @scalanode @cthoenes
