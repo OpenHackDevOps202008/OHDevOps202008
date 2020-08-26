@@ -60,7 +60,7 @@ public class UserApiControllerTest {
 
    @Test 
     public void dummTest() {
-       assertEquals(1, 2)
+       assertEquals(1, 2);
    }
     @Test
     public void testSave() throws Exception {
