@@ -53,8 +53,8 @@ jobs:
       - name: Build Image using ACR
         uses: azure/CLI@v1
         with:
-          inlineScript:
-            az acr build --image "devopsoh/api-userprofile:${GITHUB_RUN_NUMBER}" --registry openhackub08ids6acr --file Dockerfile .
+          inlineScript: |
+            ls -al 
 
 
                
