@@ -1,0 +1,66 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Build Userprofile API
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'apis/userprofile/**'
+      - '.github/workflows/api_userprofile.yml'
+ 
+  pull_request:
+    branches: [ master ]
+    paths:
+      - 'apis/userprofile/**'
+      - '.github/workflows/api_userprofile.yml'
+
+defaults:
+  run:
+    working-directory: apis/userprofile/
+
+jobs:
+  Build-and-Test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x] #10.x, 12.x,
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
+    
+
+  # Create-Docker-Image:
+
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Login to Azure
+  #       uses: azure/login@v1
+  #       with:
+  #         creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v2
+
+  #     - name: Build Image using ACR
+  #       uses: azure/CLI@v1
+  #       with:
+  #         inlineScript: |
+  #           az acr build --image "devopsoh/api-userprofile:"${{ github.run_number }} --registry openhackub08ids6acr --file ${{ github.workspace }}"/apis/userprofile/Dockerfile ."
+
+  #     # - uses: azure/webapps-deploy@v2
+  #     #   with:
+  #     #     app-name: 'openhackub08ids6userprofile'
+  #     #     images: openhackub08ids6acr.azurecr.io/devopsoh/api-userprofile:${{ github.run_number }}         
+                            
