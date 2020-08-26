@@ -40,27 +40,27 @@ jobs:
     - run: npm test
     
 
-  Create-Docker-Image:
+  # Create-Docker-Image:
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+  #   steps:
+  #     - name: Login to Azure
+  #       uses: azure/login@v1
+  #       with:
+  #         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Checkout Code
-        uses: actions/checkout@v2
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v2
 
-      - name: Build Image using ACR
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az acr build --image "devopsoh/api-userprofile:"${{ github.run_number }} --registry openhackub08ids6acr --file ${{ github.workspace }}"/apis/userprofile/Dockerfile ."
+  #     - name: Build Image using ACR
+  #       uses: azure/CLI@v1
+  #       with:
+  #         inlineScript: |
+  #           az acr build --image "devopsoh/api-userprofile:"${{ github.run_number }} --registry openhackub08ids6acr --file ${{ github.workspace }}"/apis/userprofile/Dockerfile ."
 
-      # - uses: azure/webapps-deploy@v2
-      #   with:
-      #     app-name: 'openhackub08ids6userprofile'
-      #     images: openhackub08ids6acr.azurecr.io/devopsoh/api-userprofile:${{ github.run_number }}         
+  #     # - uses: azure/webapps-deploy@v2
+  #     #   with:
+  #     #     app-name: 'openhackub08ids6userprofile'
+  #     #     images: openhackub08ids6acr.azurecr.io/devopsoh/api-userprofile:${{ github.run_number }}         
                             
