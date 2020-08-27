@@ -44,10 +44,10 @@ jobs:
       # build the docker image
     - run: |
         echo "Building API-USER-JAVA image..."
-        az acr build --image "devopsoh/api-user-java:"${{ github.run_number }} --registry ${{ env.ACRNAME }} --file Dockerfile .
+        az acr build --image "devopsoh/api-user-java:"${{ github.sha }} --registry ${{ env.ACRNAME }} --file Dockerfile .
 
     # trigger app services to deploy the new image version
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'openhackub08ids6userjava'
-        images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-user-java:${{ github.run_number }}
+        images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-user-java:${{ github.sha }}
