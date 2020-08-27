@@ -49,6 +49,7 @@ healthcheck() {
 
 while [[ true ]]; do
    result=`healthcheck $endpoint` 
+   timestamp=$(date "+%Y%m%d-%H%M%S")
    declare status
    if [[ $result -eq 200 ]]; then 
       status="ALL GOOD - "
@@ -57,7 +58,7 @@ while [[ true ]]; do
    else
       status=${result:9:3}
    fi 
-   timestamp=$(date "+%Y%m%d-%H%M%S")
+
    if [[ -z $hasUrl ]]; then
      echo "$timestamp | $status "
    else
