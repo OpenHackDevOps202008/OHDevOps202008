@@ -1,0 +1,37 @@
+
+# This workflow will build a Java project with Maven 
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+
+name: cthoenes Testflow
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/Testcth.yml'
+
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/Testcth.yml'
+    
+  
+# defaults:
+#   run:
+#     working-directory: apis/user-java/
+
+jobs:
+  test_and_build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check-out the code
+      uses: actions/checkout@v2
+
+    - name: Powershell
+      run: |
+        pwsh -file ./resources/polling.ps1 -Uri https://openhackub08ids6userjava-staging.azurewebsites.net/api/healthcheck/user-java
+
+    

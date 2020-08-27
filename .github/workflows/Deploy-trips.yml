@@ -49,4 +49,5 @@ jobs:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'openhackub08ids6trips'
+        slot-name:  'staging'
         images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-trips:${{ github.run_id }}
