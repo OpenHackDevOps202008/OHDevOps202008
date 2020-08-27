@@ -47,6 +47,11 @@ jobs:
       run: |
         az acr build --image "devopsoh/api-poi:"${{ github.run_id }} --registry ${{ env.ACRNAME }} --file Dockerfile .
 
+    # Start Staging Slot
+    - name: Start the Staging Slot
+      run: |
+        az webapp start -g openhackub08ids6rg -n openhackub08ids6poi -s staging
+
     # trigger app services to deploy the new image version
     - name: Deploy to staging slot
       uses: azure/webapps-deploy@v2
@@ -64,3 +69,8 @@ jobs:
     - name: Swap Production with Staging Slot
       run: |
         az webapp deployment slot swap -g openhackub08ids6rg -n openhackub08ids6poi --slot staging --target-slot production
+
+    # Stop Staging Slot
+    - name: Stop the Staging Slot
+      run: |
+        az webapp stop -g openhackub08ids6rg -n openhackub08ids6poi -s staging
