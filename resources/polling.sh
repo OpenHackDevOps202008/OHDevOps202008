@@ -53,7 +53,6 @@ while [[ true ]]; do
    # result=`healthcheck $endpoint` 
    status = healthcheck
    timestamp=$(date "+%Y%m%d-%H%M%S")
-   declare status
    if [[ $status -eq 200 ]]; then 
       status="ALL GOOD - "
       echo "$timestamp | $status | $endpoint " 
