@@ -43,7 +43,7 @@ jobs:
       
       # build the docker image
     - name: Build the docker image
-    - run: |
+      run: |
         echo "Building API-USER-JAVA image..."
         az acr build --image "devopsoh/api-user-java:"${{ github.run_id }} --registry ${{ env.ACRNAME }} --file Dockerfile .
 
