@@ -50,8 +50,9 @@ healthcheck() {
 while [[ true ]]; do
    result=`healthcheck $endpoint` 
    declare status
-   if [[ -z $result ]]; then 
-      status="N/A"
+   if [[ -z $result == 200 ]]; then 
+      status="ALL GOOD"
+      exit 0
    else
       status=${result:9:3}
    fi 
