@@ -7,10 +7,14 @@ name: cthoenes Testflow
 
 on:
   push:
-    branches: [ /** ]
+    branches: [ master ]
     paths:
       - '.github/workflows/Testcth.yml'
 
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/Testcth.yml'
     
   
 # defaults:
@@ -25,8 +29,7 @@ jobs:
     steps:
     - name: Check-out the code
       uses: actions/checkout@v2
-
-    - name: Powershell available
+    - name: Powershell
       run: pwsh -command ls
 
     
