@@ -52,3 +52,5 @@ jobs:
         app-name: 'openhackub08ids6userjava'
         slot-name:  'staging'
         images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-user-java:${{ github.run_id }}
+    - run:  |
+         PS > .\polling.ps1 -Uri https://github.com/Azure-Samples/openhack-devops-proctor -displayUri $true
