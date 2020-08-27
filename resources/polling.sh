@@ -52,8 +52,8 @@ healthcheck() {
 
 while [[ true ]]; do
    # result=`healthcheck $endpoint` 
-   declare local_status
-   local_status = healthcheck
+   declare local_status= `healthcheck $endpoint`  
+   # local_status = healthcheck
    timestamp=$(date "+%Y%m%d-%H%M%S")
    if [[ $endpoint_status -eq 200 ]]; then 
       status="ALL GOOD - "
@@ -61,6 +61,7 @@ while [[ true ]]; do
       exit 0
    else
       local_status=${result:9:3}
+      exit -1
    fi 
 
    if [[ -z $hasUrl ]]; then
