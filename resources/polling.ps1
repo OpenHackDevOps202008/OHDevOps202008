@@ -29,7 +29,10 @@ PS > .\polling.ps1 -Uri https://github.com/Azure-Samples/openhack-devops-proctor
 Param(
     [string] [Parameter(Mandatory=$true)] $Uri,
     [boolean] [Parameter(Mandatory=$false)] $displayUri
+    [int] [Parameter(Mandatory=$false)] $retries = 10
     )
+
+    $counter = 0
 
 while($true) {
   $R = Invoke-WebRequest -URI $Uri
@@ -45,6 +48,9 @@ while($true) {
   # Break the loop if the requested website answers with 200 and the content contains healthy
   if (($R.StatusCode -eq 200) -and ($R.Content -like "*healthy*")) {
       break
+  }
+  if ($counter == $retries) {
+      exit 1
   }
 
   Start-Sleep -Seconds 1

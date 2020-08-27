@@ -55,4 +55,4 @@ jobs:
     # check if the requested website answers with 200 and the content contains healthy 
     - name: Check if slot is available
       run: |
-        pwsh -file ../../resources/polling.ps1 -Uri https://openhackub08ids6userprofile-staging.azurewebsites.net/api/healthcheck/user
+        pwsh -file ../../resources/polling.ps1 -Uri https://openhackub08ids6userprofile-staging.azurewebsites.net/api/healthcheck/user -retries 10
