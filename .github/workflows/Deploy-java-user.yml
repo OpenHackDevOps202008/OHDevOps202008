@@ -60,7 +60,7 @@ jobs:
       run: |
         pwd
         ls -l
-        cd ../../resources/
+        cd /home/runner/work/OHDevOps202008/OHDevOps202008/resources
         chmod +x ./polling.sh
         bash ./polling.sh https://openhackub08ids6userjava-staging.azurewebsites.net/api/healthcheck/user-java
-        cd ../apis/user-java
+        cd /home/runner/work/OHDevOps202008/OHDevOps202008/apis/user-java
