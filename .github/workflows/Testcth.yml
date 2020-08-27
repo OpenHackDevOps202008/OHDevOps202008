@@ -29,6 +29,10 @@ jobs:
     steps:
     - name: Check-out the code
       uses: actions/checkout@v2
+
+    - name: Download Powershellfile
+      run: curl https://github.com/Azure-Samples/openhack-devops-proctor/blob/master/resources/polling.ps1
+
     - name: Powershell
       run: pwsh -command ls
 
