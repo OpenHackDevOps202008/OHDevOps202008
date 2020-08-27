@@ -43,17 +43,20 @@ fi
 
 healthcheck() {
     declare url=$1
-    result=$(curl -i $url 2>/dev/null | grep HTTP/1.1)
-    echo $result
+    status = $(curl --head --location --connect-timeout 5 --write-out %{http_code} --silent --output /dev/null ${url})
+    # result=$(curl -i $url 2>/dev/null | grep HTTP/1.1)
+    # echo $result
+    echo $status
 }
 
 while [[ true ]]; do
-   result=`healthcheck $endpoint` 
+   # result=`healthcheck $endpoint` 
+   status = healthcheck()
    timestamp=$(date "+%Y%m%d-%H%M%S")
    declare status
-   if [[ $result -eq 200 ]]; then 
+   if [[ $status -eq 200 ]]; then 
       status="ALL GOOD - "
-      echo "$timestamp | $status | $endpoint | $result " 
+      echo "$timestamp | $status | $endpoint " 
       exit 0
    else
       status=${result:9:3}
