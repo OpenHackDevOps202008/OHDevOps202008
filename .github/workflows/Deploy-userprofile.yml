@@ -72,8 +72,14 @@ jobs:
 
     # check if the requested website answers with 200 and the content contains healthy 
     - name: Probe if the Application is Healthy
+      id: CheckProductionHealth
       run: |
         pwsh -file ../../resources/polling.ps1 -Uri https://openhackub08ids6userprofile.azurewebsites.net/api/healthcheck/user -retries 10
+
+    - name: check if there was an issue in PRODUCTION, if YES than change slots again.
+      if: ${{ failure() && (steps.CheckProductionHealth.outcome == 'failure') }}              
+      run: |
+        az webapp deployment slot swap -g openhackub08ids6rg -n openhackub08ids6trips --slot staging --target-slot production
 
     # Stop Staging Slot
     - name: Stop the Staging Slot
