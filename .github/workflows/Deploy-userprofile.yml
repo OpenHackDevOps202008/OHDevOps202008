@@ -51,3 +51,8 @@ jobs:
         app-name: 'openhackub08ids6userprofile'
         slot-name:  'staging'
         images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-userprofile:${{ github.run_id }}
+
+    # check if the requested website answers with 200 and the content contains healthy
+    - name: Check if slot is available
+      run: |
+        pwsh -file ./resources/polling.ps1 -Uri https://openhackub08ids6userprofile-staging.azurewebsites.net/api/healthcheck/user
