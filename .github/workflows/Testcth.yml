@@ -31,9 +31,11 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Download Powershell Script
-      run: curl https://raw.githubusercontent.com/Azure-Samples/openhack-devops-proctor/master/resources/polling.ps1
+      run: curl https://raw.githubusercontent.com/Azure-Samples/openhack-devops-proctor/master/resources/polling.ps1 > polling.ps1
 
     - name: Powershell
-      run: pwsh -command ls
+      run: |
+        pwsh -command ls
+        cat polling.ps1
 
     
