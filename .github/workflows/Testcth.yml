@@ -35,7 +35,6 @@ jobs:
 
     - name: Powershell
       run: |
-        pwsh -command ls
-        cat polling.ps1
+        pwsh -file polling.ps1 curl https://raw.githubusercontent.com/Azure-Samples/openhack-devops-proctor/master/resources/polling.ps1
 
     
