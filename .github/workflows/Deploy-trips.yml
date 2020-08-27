@@ -10,6 +10,7 @@ on:
     paths:
       - 'apis/trips/**'
       - '.github/workflows/Deploy-trips.yml'
+      - 'resources/polling.ps1'
   
   #pull_request:
   #  branches: [ master ]

@@ -10,6 +10,7 @@ on:
     paths:
       - 'apis/userprofile/**'
       - '.github/workflows/Deploy-userprofile.yml'
+      - 'resources/polling.ps1'
   
   #pull_request:
   #  branches: [ master ]

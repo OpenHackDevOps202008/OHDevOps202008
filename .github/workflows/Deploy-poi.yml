@@ -10,6 +10,7 @@ on:
     paths:
       - 'apis/poi/**'
       - '.github/workflows/Deploy-poi.yml'
+      - 'resources/polling.ps1'
   
   #pull_request:
   #  branches: [ master ]
