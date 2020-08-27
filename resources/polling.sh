@@ -50,7 +50,7 @@ healthcheck() {
 while [[ true ]]; do
    result=`healthcheck $endpoint` 
    declare status
-   if [[ -z $result == 200 ]]; then 
+   if [[ $result -eq 200 ]]; then 
       status="ALL GOOD - "
       exit 0
    else
