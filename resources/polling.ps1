@@ -28,7 +28,7 @@ PS > .\polling.ps1 -Uri https://github.com/Azure-Samples/openhack-devops-proctor
 
 Param(
     [string] [Parameter(Mandatory=$true)] $Uri,
-    [boolean] [Parameter(Mandatory=$false)] $displayUri
+    [boolean] [Parameter(Mandatory=$false)] $displayUri,
     [int] [Parameter(Mandatory=$false)] $retries = 10
     )
 
