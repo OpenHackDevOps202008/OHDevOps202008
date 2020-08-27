@@ -42,18 +42,25 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
       
       # build the docker image
-    - run: |
+    - name: Build the docker image
+      run: |
         echo "Building API-USER-JAVA image..."
         az acr build --image "devopsoh/api-user-java:"${{ github.run_id }} --registry ${{ env.ACRNAME }} --file Dockerfile .
 
-    # trigger app services to deploy the new image version
-    - uses: azure/webapps-deploy@v2
+      # trigger app services to deploy the new image version
+    - name: Deploy the new docker image
+      uses: azure/webapps-deploy@v2
       with:
         app-name: 'openhackub08ids6userjava'
         slot-name:  'staging'
         images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-user-java:${{ github.run_id }}
-    - run:  |
-        curl https://raw.githubusercontent.com/Azure-Samples/openhack-devops-proctor/master/resources/polling.sh > polling.sh
+
+    # run bash script to confirm staging slot is all set
+    - name: run the QA script
+      run: |
+        pwd
+        ls -l
+        cd ../../resources/
         chmod +x ./polling.sh
         bash ./polling.sh https://openhackub08ids6userjava-staging.azurewebsites.net/api/healthcheck/user-java
-   
+        cd ../apis/user-java
