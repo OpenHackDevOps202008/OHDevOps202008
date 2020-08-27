@@ -51,7 +51,7 @@ healthcheck() {
 
 while [[ true ]]; do
    # result=`healthcheck $endpoint` 
-   status = healthcheck()
+   status = healthcheck
    timestamp=$(date "+%Y%m%d-%H%M%S")
    declare status
    if [[ $status -eq 200 ]]; then 
