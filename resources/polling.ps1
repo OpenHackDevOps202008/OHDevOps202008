@@ -42,6 +42,10 @@ while($true) {
     $output = '{0} | {1}' -f($timestamp, $R.StatusCode)
   }
   Write-Output $output
-  if ($R.StatusCode -eq 200) {break}
+  if ($R.StatusCode -eq 200) {
+      Write-Host $R.Body
+      break
+  }
+
   Start-Sleep -Seconds 1
 }
