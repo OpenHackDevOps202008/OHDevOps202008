@@ -61,12 +61,23 @@ jobs:
         images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-poi:${{ github.run_id }}
 
     # check if the requested website answers with 200 and the content contains healthy 
-    - name: Check if slot is available
+    - name: Check if staging slot is available and healthy
       run: |
         pwsh -file ../../../resources/polling.ps1 -Uri https://openhackub08ids6poi-staging.azurewebsites.net/api/healthcheck/poi -retries 10
 
     # Swap Slots
     - name: Swap Production with Staging Slot
+      run: |
+        az webapp deployment slot swap -g openhackub08ids6rg -n openhackub08ids6poi --slot staging --target-slot production
+        
+    # check if the requested website answers with 200 and the content contains healthy 
+    - name: Check if PRODUCTION slot is available and healthy
+      id: CheckProductionHealth
+      run: |
+        pwsh -file ../../../resources/polling.ps1 -Uri https://openhackub08ids6poi.azurewebsites.net/api/healthcheck/poi -retries 10
+
+    - name: check if there was an issue in PRODUCTION, if YES than change slots again.
+      if: ${{ failure() && (steps.CheckProductionHealth.outcome == 'failure') }}              
       run: |
         az webapp deployment slot swap -g openhackub08ids6rg -n openhackub08ids6poi --slot staging --target-slot production
 
