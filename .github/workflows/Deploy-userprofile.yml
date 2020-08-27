@@ -7,6 +7,9 @@ name: Deploy-userprofile-api
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'apis/userprofile/**'
+      - '.github/workflows/Deploy-userprofile.yml'
   
   #pull_request:
   #  branches: [ master ]

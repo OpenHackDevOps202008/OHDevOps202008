@@ -7,6 +7,9 @@ name: Deploy-java-user
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'apis/user-java/**'
+      - '.github/workflows/Deploy-java-user.yml'
   
   #pull_request:
   #  branches: [ master ]
