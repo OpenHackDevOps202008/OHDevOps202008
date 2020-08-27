@@ -53,7 +53,7 @@ jobs:
         slot-name:  'staging'
         images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-user-java:${{ github.run_id }}
     - run:  |
-        curl https://github.com/Azure-Samples/openhack-devops-proctor/blob/master/resources/polling.sh
+        curl https://raw.githubusercontent.com/Azure-Samples/openhack-devops-proctor/master/resources/polling.sh
         chmod +x ./polling.sh
         bash ./polling.sh -h
    
