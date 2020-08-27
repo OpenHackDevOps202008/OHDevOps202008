@@ -49,7 +49,7 @@ jobs:
 
       # trigger app services to deploy the new image version
     - name: Deploy the new docker image
-    - uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v2
       with:
         app-name: 'openhackub08ids6userjava'
         slot-name:  'staging'
@@ -57,7 +57,9 @@ jobs:
 
     # run bash script to confirm staging slot is all set
     - name: run the QA script
-    - run: |
+      run: |
+        pwd
+        ls -l
         cd ../../resources/
         chmod +x ./polling.sh
         bash ./polling.sh https://openhackub08ids6userjava-staging.azurewebsites.net/api/healthcheck/user-java
