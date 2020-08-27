@@ -51,3 +51,7 @@ jobs:
         app-name: 'openhackub08ids6trips'
         slot-name:  'staging'
         images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-trips:${{ github.run_id }}
+    
+    - name: Check if slot is available
+      run: |
+        pwsh -file ./resources/polling.ps1 -Uri https://openhackub08ids6trips-staging.azurewebsites.net/api/healthcheck/trips
