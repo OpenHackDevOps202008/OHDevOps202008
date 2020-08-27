@@ -43,10 +43,10 @@ jobs:
       
       # build the docker image
     - run: |
-        az acr build --image "devopsoh/api-trips:"${{ github.sha }} --registry ${{ env.ACRNAME }} --file Dockerfile .
+        az acr build --image "devopsoh/api-trips:"${{ github.run_id }} --registry ${{ env.ACRNAME }} --file Dockerfile .
 
     # trigger app services to deploy the new image version
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'openhackub08ids6trips'
-        images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-trips:${{ github.sha }}
+        images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-trips:${{ github.run_id }}
