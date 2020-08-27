@@ -55,5 +55,5 @@ jobs:
     - run:  |
         curl https://raw.githubusercontent.com/Azure-Samples/openhack-devops-proctor/master/resources/polling.sh > polling.sh
         chmod +x ./polling.sh
-        bash ./polling.sh -h
+        bash ./polling.sh https://openhackub08ids6userjava-staging.azurewebsites.net/api/healthcheck/user-java
    
