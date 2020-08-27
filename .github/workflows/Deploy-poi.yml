@@ -69,12 +69,13 @@ jobs:
     - name: Swap Production with Staging Slot
       run: |
         az webapp deployment slot swap -g openhackub08ids6rg -n openhackub08ids6poi --slot staging --target-slot production
-
+        
     # check if the requested website answers with 200 and the content contains healthy 
     - name: Check if PRODUCTION slot is available and healthy
       id: CheckProductionHealth
+      #         pwsh -file ../../../resources/polling.ps1 -Uri https://openhackub08ids6poi.azurewebsites.net/api/healthcheck/poi -retries 10
       run: |
-        pwsh -file ../../../resources/polling.ps1 -Uri https://openhackub08ids6poi.azurewebsites.net/api/healthcheck/poi -retries 10
+        exit 1
 
     - name: check if there was an issue in PRODUCTION, if YES than change slots again.
       if: ${{ failure() && (steps.CheckProductionHealth.outcome == 'failure') }}              
