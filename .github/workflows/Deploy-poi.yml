@@ -73,9 +73,8 @@ jobs:
     # check if the requested website answers with 200 and the content contains healthy 
     - name: Check if PRODUCTION slot is available and healthy
       id: CheckProductionHealth
-      #         pwsh -file ../../../resources/polling.ps1 -Uri https://openhackub08ids6poi.azurewebsites.net/api/healthcheck/poi -retries 10
       run: |
-        exit 1
+        pwsh -file ../../../resources/polling.ps1 -Uri https://openhackub08ids6poi.azurewebsites.net/api/healthcheck/poi -retries 10
 
     - name: check if there was an issue in PRODUCTION, if YES than change slots again.
       if: ${{ failure() && (steps.CheckProductionHealth.outcome == 'failure') }}              
