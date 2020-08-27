@@ -49,5 +49,5 @@ jobs:
     # trigger app services to deploy the new image version
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'openhackub08ids6userjava'
+        app-name: 'openhackub08ids6userjava-staging'
         images: ${{ env.ACRNAME }}.azurecr.io/devopsoh/api-user-java:${{ github.run_id }}
