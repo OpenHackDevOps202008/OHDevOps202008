@@ -44,7 +44,7 @@ fi
 
 healthcheck() {
     declare url=$1
-    endpoint_status = $(curl --head --location --connect-timeout 5 --write-out %{http_code} --silent --output /dev/null ${url})
+    $endpoint_status = $(curl --head --location --connect-timeout 5 --write-out %{http_code} --silent --output /dev/null ${url})
     # result=$(curl -i $url 2>/dev/null | grep HTTP/1.1)
     # echo $result
     echo $endpoint_status
@@ -60,7 +60,7 @@ while [[ true ]]; do
       echo "$timestamp | $endpoint_status | $endpoint " 
       exit 0
    else
-      local_status=${result:9:3}
+      $local_status=${result:9:3}
       exit -1
    fi 
 
