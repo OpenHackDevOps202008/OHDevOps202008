@@ -43,11 +43,13 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
       
       # build the docker image
-    - run: |
+    - name: Build and Push the Docker Image
+      run: |
         az acr build --image "devopsoh/api-poi:"${{ github.run_id }} --registry ${{ env.ACRNAME }} --file Dockerfile .
 
     # trigger app services to deploy the new image version
-    - uses: azure/webapps-deploy@v2
+    - name: Deploy to staging slot
+      uses: azure/webapps-deploy@v2
       with:
         app-name: 'openhackub08ids6poi'
         slot-name:  'staging'
@@ -57,3 +59,8 @@ jobs:
     - name: Check if slot is available
       run: |
         pwsh -file ../../../resources/polling.ps1 -Uri https://openhackub08ids6poi-staging.azurewebsites.net/api/healthcheck/poi -retries 10
+
+    # Swap Slots
+    - name: Swap Production with Staging Slot
+      run: |
+        az webapp deployment slot swap -g openhackub08ids6rg -n openhackub08ids6poi --slot staging --target-slot production
