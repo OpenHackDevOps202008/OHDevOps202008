@@ -42,8 +42,8 @@ while($true) {
     $output = '{0} | {1}' -f($timestamp, $R.StatusCode)
   }
   Write-Output $output
-  if ($R.StatusCode -eq 200) {
-      Write-Host $R.Body
+  # Break the loop if the requested website answers with 200 and the content contains healthy
+  if (($R.StatusCode -eq 200) -and ($R.Content -like "*healthy*")) {
       break
   }
 
