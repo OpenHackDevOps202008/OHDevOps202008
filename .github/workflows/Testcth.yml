@@ -31,10 +31,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Download Powershell Script
-      run: curl https://raw.githubusercontent.com/Azure-Samples/openhack-devops-proctor/master/resources/polling.ps1 > polling.ps1
+      run: curl https://raw.githubusercontent.com/Azure-Samples/openhack-devops-proctor/master/resources/polling.ps1 -o polling.ps1
 
     - name: Powershell
       run: |
-        pwsh -file polling.ps1 -Uri https://openhackub08ids6userjava-staging.azurewebsites.net/api/healthcheck/user-java
+        pwsh -file ./resources/polling.ps1 -Uri https://openhackub08ids6userjava-staging.azurewebsites.net/api/healthcheck/user-java
 
     
