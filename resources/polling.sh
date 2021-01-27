@@ -44,8 +44,11 @@ fi
 
 healthcheck() {
     declare url=$1
+    # $endpoint_status = $(curl --head --location --connect-timeout 5 --write-out %{http_code} --silent --output /dev/null ${url} | grep HTTP/1.1)
     $endpoint_status = $(curl --head --location --connect-timeout 5 --write-out %{http_code} --silent --output /dev/null ${url})
     # result=$(curl -i $url 2>/dev/null | grep HTTP/1.1)
+    # status=$(curl --head --location --connect-timeout 5 --write-out %{http_code} --silent --output /dev/null ${url})
+    # [[ $status == 500 ]] || [[ $status == 000 ]] && echo restarting ${url} # do start/restart logic
     # echo $result
     echo $endpoint_status
 }
@@ -56,11 +59,11 @@ while [[ true ]]; do
    # local_status = healthcheck
    timestamp=$(date "+%Y%m%d-%H%M%S")
    if [[ $endpoint_status -eq 200 ]]; then 
-      status="ALL GOOD - "
+      local_status="ALL GOOD - "
       echo "$timestamp | $endpoint_status | $endpoint " 
       exit 0
    else
-      $local_status=${result:9:3}
+      echo $local_status
       exit -1
    fi 
 
